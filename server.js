@@ -13,6 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(blogRoutes);
 
 const PORT = process.env.PORT || 8000;
-mongoose.connect(process.env.MONGODB_URL, () => {
+mongoose.connect(process.env.MONGODB_URL, (err) => {
+  if (err) console.log(err);
   app.listen(PORT);
 });

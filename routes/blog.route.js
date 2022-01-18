@@ -11,10 +11,10 @@ router.get("/", blogController.getAllArticle);
 // router.post("/write-comment", blogController.postWriteComment);
 
 router.get("/add-article", blogController.getAddArticle);
-// router.post("/add-article", adminController.postAddArticle);
+router.post("/add-article", blogController.postAddArticle);
 
-// router.get("/edit-delete-article/:articleId", adminController.getEditArticle);
-// router.post("/edit-delete-article", adminController.postEditArticle);
-// router.post("/edit-delete-article", adminController.postDeleteArticle);
+router.get("/edit-delete-article/:articleId", blogController.getEditArticle);
+router.post("/edit-article", blogController.postEditArticle);
+router.post("/delete-article", blogController.postDeleteArticle);
 
 module.exports = router;

@@ -1,29 +1,28 @@
 <%- include('./includes/head.ejs') %>
-<form
-  action="/
-      <% if(editing) { %>
-           /edit-article
-      <% }else{ %>
-           /add-article
-      <% } %>"
-  method="POST"
->
-  <% if(editing) { %>
+
+<% if(editing) { %>
+  <form action="/edit-article" method="POST">
   <button type="submit">Edit</button>
-  <button type="submit">Delete</button>
-  <% }else{ %>
+  <input type="hidden" name='articleId' value='<%= article._id %>'>    
+<% }else{ %>
+  <form action="/add-article" method="POST">
   <button type="submit">Add New Article</button>
-  <% } %>
-  <input
-    type="text"
-    name="title"
-    value="<% if(editing) { %><%= article.title%><% } %>"
-  />
-  <input
-    type="textarea"
-    name="content"
-    value="<% if(editing) { %><%= article.content%><% } %>"
-  />
-</form>
+<% } %>
+    <input
+      type="text"
+      name="title"
+      value="<% if(editing) { %><%= article.title%><% } %>"
+    />
+    <input
+      type="text"
+      name="content"
+      value="<% if(editing) { %><%= article.content%><% } %>"
+    />
+  </form>
+  
+  <form action="/delete-article" method="POST">
+    <button type="submit">Delete</button>
+    <input type="hidden" name='articleId' value='<%= article._id %>'>
+  </form>
 
 <%- include('./includes/end.ejs') %>

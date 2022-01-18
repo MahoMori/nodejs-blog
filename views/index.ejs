@@ -1,8 +1,24 @@
 <%- include("./includes/head.ejs") %>
 <div>
-  <button>+ Add New</button>
+  <a href="/add-article">+ Add New</a>
 </div>
 <div>
-  <div>list goes here</div>
+  <% if(articles.length > 0) { %>
+    <% for(let article of articles) { %>
+      <div>
+        <h3><%= article.title %></h3>
+        <div><%= article.content %></div>
+        <a href="/edit-delete-article/<%= article._id %>">Edit</a>
+        <a href="/write-comment/<%= article._id %>">Comment</a>
+        <% if(article.isLike) { %>
+          <button>Dislike</button>
+        <% }else{ %>
+          <button>Like</button>
+        <% } %>
+      </div>
+    <% } %>
+  <% }else{ %>
+    <h2>No Articles Yet</h2>
+  <% } %>
 </div>
 <%- include("./includes/end.ejs") %>

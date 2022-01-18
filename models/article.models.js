@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.schema;
+const Schema = mongoose.Schema;
 
 const articleSchema = new Schema({
   title: {
@@ -13,9 +13,7 @@ const articleSchema = new Schema({
   isLiked: {
     type: Boolean,
   },
-  comments: {
-    type: String,
-  },
+  comments: [{ comment: String }],
 });
 
 module.exports = mongoose.model("Article", articleSchema);
