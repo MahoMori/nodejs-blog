@@ -1,0 +1,31 @@
+<%- include("./includes/head.ejs") %>
+<div>
+  <a href="/">Go Back</a>
+</div>
+<div>
+  <div>
+    <h3><%= article.title %></h3>
+    <div><%= article.content %></div>
+    <div>
+      <% if(article.comments.length > 0) { %>
+        <% for(let comment of article.comments) { const newComment = comment.split('\r\n') %>
+          <div>
+            <% for(let nc of newComment) { %>
+              <%= nc %>
+              <br>
+            <% } %>
+          </div>
+        <% } %>
+      <% }else{%>
+        <div>No Comments Yet</div>
+      <% } %>
+    </div>
+    <div>
+      <form action='/submit-comment' method="POST">
+        <textarea name="comment"></textarea>
+        <input type="hidden" name="articleId" value='<%= article._id %>'>
+        <button type='submit'>Submit comment</button>
+      </form>
+    </div>
+</div>
+<%- include("./includes/end.ejs") %>

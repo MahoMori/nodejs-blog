@@ -13,7 +13,7 @@ const articleSchema = new Schema({
   isLiked: {
     type: Boolean,
   },
-  comments: [{ comment: String }],
+  comments: [],
 });
 
 module.exports = mongoose.model("Article", articleSchema);

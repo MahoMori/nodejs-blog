@@ -8,8 +8,8 @@
       <div>
         <h3><%= article.title %></h3>
         <div><%= article.content %></div>
+        <a href="/view-article/<%= article._id %>">Read more</a>
         <a href="/edit-delete-article/<%= article._id %>">Edit</a>
-        <a href="/write-comment/<%= article._id %>">Comment</a>
         
         <form action="/like-dislike-article" method="POST">
           <input type="hidden" name="articleId" value="<%= article._id %>">

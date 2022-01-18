@@ -18,6 +18,38 @@ exports.getAllArticle = (req, res, next) => {
   });
 };
 
+exports.postLikeDislikeArticle = async (req, res, next) => {
+  const { articleId } = req.body;
+
+  const article = await getById(articleId);
+
+  article.isLiked ? (article.isLiked = false) : (article.isLiked = true);
+
+  await article.save();
+  res.redirect("/");
+};
+
+exports.getViewArticle = async (req, res, next) => {
+  const { articleId } = req.params;
+  const article = await getById(articleId);
+
+  res.render("view-article", {
+    pageTitle: article.title,
+    article: article,
+  });
+};
+
+exports.postSubmitComment = async (req, res, next) => {
+  const { articleId, comment } = req.body;
+
+  const article = await getById(articleId);
+
+  article.comments.push(comment);
+
+  await article.save();
+  res.redirect(`/view-article/${articleId}`);
+};
+
 exports.getAddArticle = (req, res, next) => {
   res.render("add-edit-delete-article", {
     pageTitle: "Add Article",
@@ -32,15 +64,11 @@ exports.postAddArticle = async (req, res, next) => {
     title,
     content,
     isLiked: false,
-    comments: [{}],
+    comments: [],
   });
   await article.save();
   res.redirect("/");
 };
-
-// exports.getEachArticle = (req,res,next) => {
-
-// }
 
 exports.getEditArticle = async (req, res, next) => {
   const { articleId } = req.params;
@@ -72,26 +100,3 @@ exports.postDeleteArticle = (req, res, next) => {
     res.redirect("/");
   });
 };
-
-exports.postLikeDislikeArticle = async (req, res, next) => {
-  const { articleId } = req.body;
-
-  const article = await getById(articleId);
-
-  article.isLiked ? (article.isLiked = false) : (article.isLiked = true);
-
-  await article.save();
-  res.redirect("/");
-};
-
-// exports.getViewArticle = (req, res, next) => {
-
-// };
-
-// exports.getWriteComment = (req, res, next) => {
-
-// }
-
-// exports.postWriteComment = (req, res, next) => {
-
-// }

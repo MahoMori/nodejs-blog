@@ -13,16 +13,16 @@
       name="title"
       value="<% if(editing) { %><%= article.title%><% } %>"
     />
-    <input
-      type="text"
+    <textarea
       name="content"
-      value="<% if(editing) { %><%= article.content%><% } %>"
-    />
+    ><% if(editing) { %><%= article.content %><% } %></textarea>
   </form>
   
+  <% if(editing) { %>
   <form action="/delete-article" method="POST">
     <button type="submit">Delete</button>
     <input type="hidden" name='articleId' value='<%= article._id %>'>
   </form>
+  <% } %>
 
 <%- include('./includes/end.ejs') %>
