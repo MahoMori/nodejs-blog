@@ -10,11 +10,15 @@
         <div><%= article.content %></div>
         <a href="/edit-delete-article/<%= article._id %>">Edit</a>
         <a href="/write-comment/<%= article._id %>">Comment</a>
-        <% if(article.isLike) { %>
-          <button>Dislike</button>
-        <% }else{ %>
-          <button>Like</button>
-        <% } %>
+        
+        <form action="/like-dislike-article" method="POST">
+          <input type="hidden" name="articleId" value="<%= article._id %>">
+          <% if(article.isLiked) { %>
+            <button type="submit">Dislike</button>
+          <% }else{ %>
+            <button type="submit">Like</button>
+          <% } %>
+        </form>
       </div>
     <% } %>
   <% }else{ %>

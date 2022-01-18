@@ -4,8 +4,9 @@ const router = express.Router();
 const blogController = require("../controllers/blogController");
 
 router.get("/", blogController.getAllArticle);
-// router.post("/", blogController.postLikeArticle);
-// router.post("/", blogController.postDislikeArticle);
+router.post("/like-dislike-article", blogController.postLikeDislikeArticle);
+
+// router.get("view-article/:articleId", blogController.getViewArticle);
 
 // router.get("/write-comment/:articleId", blogController.getWriteComment);
 // router.post("/write-comment", blogController.postWriteComment);

@@ -73,13 +73,20 @@ exports.postDeleteArticle = (req, res, next) => {
   });
 };
 
-// exports.postLikeArticle = (req, res, next) => {
+exports.postLikeDislikeArticle = async (req, res, next) => {
+  const { articleId } = req.body;
 
-// }
+  const article = await getById(articleId);
 
-// exports.postDislikeArticle = (req, res, next) => {
+  article.isLiked ? (article.isLiked = false) : (article.isLiked = true);
 
-// }
+  await article.save();
+  res.redirect("/");
+};
+
+// exports.getViewArticle = (req, res, next) => {
+
+// };
 
 // exports.getWriteComment = (req, res, next) => {
 
