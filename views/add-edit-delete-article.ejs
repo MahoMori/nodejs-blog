@@ -1,28 +1,52 @@
 <%- include('./includes/head.ejs') %>
 
+
+<div class="center top-button">
+  <a href="/" class="button is-warning">← Go Back To Main Page</a>
+</div>
+<div class="container">
 <% if(editing) { %>
   <form action="/edit-article" method="POST">
-  <button type="submit">Edit</button>
-  <input type="hidden" name='articleId' value='<%= article._id %>'>    
+  <button type="submit" class="button is-link add-edit-button">Edit</button>
+  <input type="hidden" name='articleId' value='<%= article._id %>'>
 <% }else{ %>
   <form action="/add-article" method="POST">
-  <button type="submit">Add New Article</button>
+  <button type="submit" class="button is-primary add-edit-button">Add New Article</button>
 <% } %>
-    <input
-      type="text"
-      name="title"
-      value="<% if(editing) { %><%= article.title%><% } %>"
-    />
-    <textarea
-      name="content"
-    ><% if(editing) { %><%= article.content %><% } %></textarea>
+    <div class="field">
+      <label class="label">Title</label>
+      <div class="control">
+        <input
+          type="text"
+          class="input"
+          name="title"
+          value="<% if(editing) { %><%= article.title%><% } %>"
+          required
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Content</label>
+      <div class="control">
+        <textarea
+          name="content"
+          class="textarea"
+          rows="10"
+          required
+        ><% if(editing) { %><%= article.content %><% } %></textarea>
+      </div>
+    </div>
+    
   </form>
-  
+    
   <% if(editing) { %>
-  <form action="/delete-article" method="POST">
-    <button type="submit">Delete</button>
-    <input type="hidden" name='articleId' value='<%= article._id %>'>
-  </form>
+    <form action="/delete-article" method="POST">
+      <button type="submit" class="button is-danger delete-button">Delete</button>
+      <input type="hidden" name='articleId' value='<%= article._id %>'>
+    </form>
   <% } %>
+</div>
+  
 
 <%- include('./includes/end.ejs') %>

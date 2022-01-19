@@ -1,0 +1,72 @@
+html {
+  /* background-color: #fd9c78; */
+  background-image: url("../background.jpg");
+  background-size: cover;
+}
+
+body {
+  font-family: "Roboto Mono", monospace;
+}
+
+.center {
+  text-align: center;
+}
+
+.blog-logo {
+  margin: 20px 0;
+}
+
+.container {
+  width: 90%;
+  margin: 30px auto;
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 20px;
+}
+
+/* index */
+.box {
+  background-color: hsl(48, 100%, 96%);
+}
+
+.field.is-grouped {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.fav-button {
+  background-color: transparent;
+  border: none;
+}
+
+ion-icon {
+  color: #ff5e00;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* add-edit-delete-article */
+.add-edit-button,
+.delete-button {
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.add-edit-button {
+  margin-bottom: 30px;
+}
+
+.delete-button {
+  margin-top: 30px;
+}
+
+/* end */
+footer {
+  background-color: #fff;
+}
+
+footer a {
+  display: block;
+  text-align: center;
+}
