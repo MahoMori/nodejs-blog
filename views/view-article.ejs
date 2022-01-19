@@ -12,12 +12,17 @@
 <div class="container">
     <div>
       <% if(article.comments.length > 0) { %>
-        <% for(let comment of article.comments) { const newComment = comment.split('\r\n') %>
-          <div>
-            <% for(let nc of newComment) { %>
-              <%= nc %>
-              <br>
-            <% } %>
+        <% for(let comment of article.comments) { const newComment = comment.comment.split('\r\n') %>
+          <div class="columns">
+            <div class="column is-one-fifth">
+              <p class="title is-6"><%= comment.name %></p>
+            </div>
+            <div class="column">
+              <% for(let nc of newComment) { %>
+                <%= nc %>
+                <br>
+              <% } %>
+            </div>
           </div>
           <hr>
         <% } %>
@@ -27,15 +32,30 @@
       <% } %>
     </div>
     <div>
-      <form action='/submit-comment' method="POST" class="field">
-        <label class="label">Write comment</label>
-        <div class="control">
-          <textarea
-            name="comment"
-            class="textarea"
-            required
-          ></textarea>
+      <form action='/submit-comment' method="POST">
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control">
+            <input
+              type="text"
+              class="input"
+              name="name"
+              required
+            />
+          </div>
         </div>
+
+        <div class="field">
+          <label class="label">Write comment</label>
+          <div class="control">
+            <textarea
+              name="comment"
+              class="textarea"
+              required
+            ></textarea>
+          </div>
+        </div>
+      
         <input type="hidden" name="articleId" value='<%= article._id %>'>
         <button type='submit' class="button is-success is-light submit-comment-button">Submit comment</button>
       </form>

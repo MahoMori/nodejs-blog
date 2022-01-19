@@ -40,11 +40,11 @@ exports.getViewArticle = async (req, res, next) => {
 };
 
 exports.postSubmitComment = async (req, res, next) => {
-  const { articleId, comment } = req.body;
+  const { articleId, name, comment } = req.body;
 
   const article = await getById(articleId);
 
-  article.comments.push(comment);
+  article.comments.push({ name, comment });
 
   await article.save();
   res.redirect(`/view-article/${articleId}`);
