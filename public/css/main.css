@@ -48,7 +48,8 @@ ion-icon {
 
 /* add-edit-delete-article */
 .add-edit-button,
-.delete-button {
+.delete-button,
+.submit-comment-button {
   left: 50%;
   transform: translate(-50%, 0);
 }
@@ -57,9 +58,11 @@ ion-icon {
   margin-bottom: 30px;
 }
 
-.delete-button {
+.delete-button, .submit-comment-button {
   margin-top: 30px;
 }
+
+/* view-article */
 
 /* end */
 footer {

@@ -1,11 +1,15 @@
 <%- include("./includes/head.ejs") %>
-<div>
-  <a href="/">Go Back</a>
+
+<div class="center top-button">
+  <a href="/" class="button is-warning">← Go Back To Main Page</a>
 </div>
-<div>
-  <div>
-    <h3><%= article.title %></h3>
-    <div><%= article.content %></div>
+
+<div class="container">
+  <h3 class="title is-4"><%= article.title %></h3>
+  <div><%= article.content %></div>
+</div>
+
+<div class="container">
     <div>
       <% if(article.comments.length > 0) { %>
         <% for(let comment of article.comments) { const newComment = comment.split('\r\n') %>
@@ -15,16 +19,25 @@
               <br>
             <% } %>
           </div>
+          <hr>
         <% } %>
       <% }else{%>
         <div>No Comments Yet</div>
+        <hr>
       <% } %>
     </div>
     <div>
-      <form action='/submit-comment' method="POST">
-        <textarea name="comment"></textarea>
+      <form action='/submit-comment' method="POST" class="field">
+        <label class="label">Write comment</label>
+        <div class="control">
+          <textarea
+            name="comment"
+            class="textarea"
+            required
+          ></textarea>
+        </div>
         <input type="hidden" name="articleId" value='<%= article._id %>'>
-        <button type='submit'>Submit comment</button>
+        <button type='submit' class="button is-success is-light submit-comment-button">Submit comment</button>
       </form>
     </div>
 </div>
