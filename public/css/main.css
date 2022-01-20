@@ -65,6 +65,14 @@ ion-icon {
 
 /* view-article */
 
+/* 404 */
+.not-found {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* end */
 footer {
   background-color: #fff;
